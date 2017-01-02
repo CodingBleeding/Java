@@ -129,6 +129,7 @@ public class NotePad extends JFrame implements ActionListener{
 				if (file != null) {
 					fileChooser.setSelectedFile(file);
 				}
+				fileChooser.setFileFilter(new MyFileFilter());
 				int value = fileChooser.showOpenDialog(this);
 						if (value == JFileChooser.APPROVE_OPTION) {
 							file = fileChooser.getSelectedFile();
@@ -146,10 +147,11 @@ public class NotePad extends JFrame implements ActionListener{
 							}
 						}
 			}
-			if ("Save" == name) {
-				if (file != null) {
+			if ("Save".equals(name)) {
+				if (file != null) 
 					fileChooser.setSelectedFile(file);
-				int value = fileChooser.showSaveDialog(this);
+				fileChooser.setFileFilter(new MyFileFilter());
+				int value = fileChooser.showSaveDialog(NotePad.this);
 				//当单击保存按钮时
 				if (value == JFileChooser.APPROVE_OPTION) {
 					file = fileChooser.getSelectedFile();
@@ -162,8 +164,8 @@ public class NotePad extends JFrame implements ActionListener{
 					// TODO: handle exception
 					e2.printStackTrace();
 				}
-				}
-			}
+				
+			  }
 			if ("Cut" == name) {
 				textPane.cut();
 			}
@@ -186,7 +188,7 @@ public class NotePad extends JFrame implements ActionListener{
 			if ("About".equals(name)) {
 				about.setTitle("About");
 				about.setSize(300,300);
-				about.getContentPane().setBackground(Color.black);
+				about.getContentPane().setBackground(Color.BLUE);
 				JLabel jlbfirst = new JLabel();
 				about.getContentPane().add(jlbfirst);//将标签添加到对话框（容器）中
 				jlbfirst.setText("Thank you for use");
